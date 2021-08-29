@@ -1,0 +1,17 @@
+{
+  "name": "sps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sps.js",
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "jest": "^27.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
