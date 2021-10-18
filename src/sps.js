@@ -6,6 +6,20 @@ const logger = (message) => {
   console.log(message);
 };
 
+const time = (message) => {
+  setTimeout(() => {
+    console.log(message);
+  });
+};
+
+const performAction = (message, action) => {
+  setTimeout(logger, 500, ".");
+  setTimeout(logger, 1000, message);
+  setTimeout(() => {
+    action()
+  }, 1500);
+};
+
 //initialising new game
 const newGame = () => {
   inquirer
@@ -22,11 +36,12 @@ const newGame = () => {
     //setTimeouts are used so that the game goes at a slower pace and it makes it easier to read in the command line
     .then((answers) => {
       if (answers.newGame === "Sure thang") {
-        setTimeout(logger, 500, ".");
-        setTimeout(logger, 1000, "Let's Go");
-        setTimeout(() => {
-          humanOrComputer();
-        }, 1500);
+        // setTimeout(logger, 500, ".");
+        // setTimeout(logger, 1000, "Let's Go");
+        // setTimeout(() => {
+        //   humanOrComputer();
+        // }, 1500);
+        performAction("Let's Go", humanOrComputer)
         //if user does not answer true, the game ends
       } else {
         setTimeout(logger, 500, ".");
@@ -49,11 +64,12 @@ const humanOrComputer = () => {
     //choice is made here and the relevant functions are evoked accordingly
     .then((answers) => {
       if (answers.humanOrComputer === "Me play") {
-        setTimeout(logger, 500, ".");
-        setTimeout(logger, 1000, "Human it is then");
-        setTimeout(() => {
-          human();
-        }, 1500);
+        // setTimeout(logger, 500, ".");
+        // setTimeout(logger, 1000, "Human it is then");
+        // setTimeout(() => {
+        //   human();
+        // }, 1500);
+        performAction("Human it is then!", human)
       } else {
         setTimeout(logger, 500, ".");
         setTimeout(logger, 1000, "Skynet Mode");
@@ -66,6 +82,38 @@ const humanOrComputer = () => {
 
 //weapons and random weapons are declared here
 const weapons = ["Scissors", "Paper", "Stone"];
+const weapons2 = {
+  scissors:"Scissors",
+  paper: "Paper",
+  stone: "Stone",
+  lizard: "Lizard"
+}
+
+const winobject = {
+  stone: [scissors,lizard],
+  paper: stone,
+  scissors: paper,
+}
+
+const loseobject = {
+
+}
+
+const win = (one, two, three, four) =>{
+  if (playerChoice === one) {
+    if (computerChoice === two) {
+      winner.label = playerLabel;
+      winner.type = user;
+    }
+    if (computerChoice === three) {
+      winner.label = computer;
+      winner.type = computer;
+    }
+    if (computerChoice === four) {
+      winner.label = computer;
+      winner.type = computer;
+    }
+}
 const randomWeapon = () => {
   return weapons[Math.floor(Math.random() * weapons.length)];
 };
@@ -80,15 +128,18 @@ const results = (playerChoice, computerChoice, playerLabel) => {
   if (playerChoice === computerChoice) {
     winner.type = "No one";
     winner.label = "No one";
-  } else if (playerChoice === "Scissors") {
-    if (computerChoice === "Paper") {
-      winner.label = playerLabel;
-      winner.type = user;
-    }
-    if (computerChoice === "Stone") {
-      winner.label = computer;
-      winner.type = computer;
-    }
+    win(weapons2.scissors, weapons2.paper, weapons2.stone)
+    win(weapons2.rock,)
+  } 
+  else if (playerChoice === "Scissors") {
+  //   if (computerChoice === "Paper") {
+  //     winner.label = playerLabel;
+  //     winner.type = user;
+  //   }
+  //   if (computerChoice === "Stone") {
+  //     winner.label = computer;
+  //     winner.type = computer;
+    // }
   } else if (playerChoice === "Paper") {
     if (computerChoice === "Stone") {
       winner.label = playerLabel;
